@@ -95,6 +95,7 @@ pub enum Error<W: WebRequest> {
 /// [`AccessTokenFlow`]: ../../../endpoint/struct.AccessTokenFlow.html
 /// [`ResourceFlow`]: ../../../endpoint/struct.ResourceFlow.html
 /// [`ResourceFlow`]: ../../../endpoint/trait.Scopes.html
+#[derive(Debug)]
 pub struct Generic<R, A, I, S = Vacant, C = Vacant, L = Vacant> {
     /// The registrar implementation, or `Vacant` if it is not necesary.
     pub registrar: R,
@@ -156,6 +157,7 @@ impl<E, Error> ErrorInto<E, Error> {
 ///
 /// See [OwnerSolicitor](#OwnerSolicitor) for discussion on why this differs from the other
 /// primitives.
+#[derive(Debug)]
 pub struct Vacant;
 
 /// A simple wrapper for functions and lambdas to be used as solicitors.

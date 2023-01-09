@@ -29,6 +29,7 @@ pub trait Authorizer {
 /// This authorizer saves a mapping of generated strings to their associated grants. The generator
 /// is itself trait based and can be chosen during construction. It is assumed to not be possible
 /// for two different grants to generate the same token in the issuer.
+#[derive(Debug)]
 pub struct AuthMap<I: TagGrant = Box<dyn TagGrant + Send + Sync + 'static>> {
     tagger: I,
     usage: u64,

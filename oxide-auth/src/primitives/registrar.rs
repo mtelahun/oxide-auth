@@ -286,10 +286,16 @@ pub enum ClientType {
 }
 
 /// A very simple, in-memory hash map of client ids to Client entries.
-#[derive(Default)]
+#[derive(Debug, Default)]
 pub struct ClientMap {
     clients: HashMap<String, EncodedClient>,
     password_policy: Option<Box<dyn PasswordPolicy>>,
+}
+
+impl std::fmt::Debug for dyn PasswordPolicy {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "PassworPolicy(***)")
+    }
 }
 
 impl fmt::Debug for ClientType {

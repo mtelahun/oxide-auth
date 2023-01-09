@@ -96,6 +96,7 @@ pub struct RefreshedToken {
 /// The generator is itself trait based and can be chosen during construction. It is assumed to not
 /// be possible (or at least very unlikely during their overlapping lifetime) for two different
 /// grants to generate the same token in the grant tagger.
+#[derive(Debug)]
 pub struct TokenMap<G: TagGrant = Box<dyn TagGrant + Send + Sync + 'static>> {
     duration: Option<Duration>,
     generator: G,
@@ -104,6 +105,7 @@ pub struct TokenMap<G: TagGrant = Box<dyn TagGrant + Send + Sync + 'static>> {
     refresh: HashMap<Arc<str>, Arc<Token>>,
 }
 
+#[derive(Debug)]
 struct Token {
     /// Back link to the access token.
     access: Arc<str>,

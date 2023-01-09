@@ -49,6 +49,7 @@ pub trait TagGrant {
 ///
 /// Each byte is chosen randomly from the basic `rand::thread_rng`. This generator will always
 /// succeed.
+#[derive(Debug)]
 pub struct RandomGenerator {
     random: OsRng,
     len: usize,
