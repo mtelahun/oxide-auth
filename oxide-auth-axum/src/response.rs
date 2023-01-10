@@ -17,6 +17,14 @@ pub struct OAuthResponse {
 }
 
 impl OAuthResponse {
+    /// Create a simple response with no body and a '200 OK' HTTP Status
+    pub fn new() -> Self {
+        OAuthResponse {
+            status: StatusCode::OK,
+            headers: HeaderMap::new(),
+            body: None,
+        }
+    }
     /// Set the `ContentType` header on a response
     pub fn content_type(mut self, content_type: &str) -> Result<Self, WebError> {
         self.headers
