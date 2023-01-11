@@ -58,9 +58,9 @@ impl WebResponse for OAuthResponse {
         Ok(())
     }
 
-    fn unauthorized(&mut self, kind: &str) -> Result<(), Self::Error> {
+    fn unauthorized(&mut self, header_value: &str) -> Result<(), Self::Error> {
         self.status = StatusCode::UNAUTHORIZED;
-        self.headers.insert(header::WWW_AUTHENTICATE, kind.try_into()?);
+        self.headers.insert(header::WWW_AUTHENTICATE, header_value.try_into()?);
         Ok(())
     }
 
@@ -71,8 +71,8 @@ impl WebResponse for OAuthResponse {
         Ok(())
     }
 
-    fn body_json(&mut self, json: &str) -> Result<(), Self::Error> {
-        self.body = Some(json.to_owned());
+    fn body_json(&mut self, data: &str) -> Result<(), Self::Error> {
+        self.body = Some(data.to_owned());
         self.headers
             .insert(header::CONTENT_TYPE, HeaderValue::from_static("application/json"));
         Ok(())
